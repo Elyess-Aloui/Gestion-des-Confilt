@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Inscription - Gestion des emplois du temps{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+    <div class="col-md-5 col-lg-4">
+        <div class="card p-4">
+            <h4 class="fw-bold text-dark mb-1">Inscription</h4>
+            <p class="text-secondary small mb-4">Créez votre compte administrateur</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label text-secondary small">Nom d'utilisateur</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-secondary small">Adresse email</label>
+                    {{ form.email }}
+                </div>
+                <div class="mb-3">
+                    <label class="form-label text-secondary small">Mot de passe</label>
+                    {{ form.password }}
+                </div>
+                <div class="mb-4">
+                    <label class="form-label text-secondary small">Confirmer le mot de passe</label>
+                    {{ form.password_confirm }}
+                </div>
+                <button type="submit" class="btn btn-primary-custom w-100 py-2">
+                    S'inscrire
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <span class="text-secondary small">Déjà un compte ? </span>
+                <a href="{% url 'login' %}" class="text-primary text-decoration-none small">Se connecter</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

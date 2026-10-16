@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Connexion - Gestion des emplois du temps{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 65vh;">
+    <div class="col-md-5 col-lg-4">
+        <div class="card p-4">
+            <h4 class="fw-bold text-dark mb-1">Connexion</h4>
+            <p class="text-secondary small mb-4">Entrez vos identifiants pour accéder à l'application</p>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label text-secondary small font-weight-bold">Nom d'utilisateur</label>
+                    {{ form.username }}
+                </div>
+                <div class="mb-4">
+                    <label class="form-label text-secondary small font-weight-bold">Mot de passe</label>
+                    {{ form.password }}
+                </div>
+                <button type="submit" class="btn btn-primary-custom w-100 py-2">
+                    Se connecter
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <span class="text-secondary small">Pas encore de compte ? </span>
+                <a href="{% url 'signup' %}" class="text-primary text-decoration-none small font-weight-bold">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

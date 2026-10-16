@@ -1,0 +1,79 @@
+[
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "1",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4",
+    "id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4",
+    "created_at": "2026-08-24T02:28:32.900305"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "2",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "38079701-6786-4f3d-b740-de26866142db",
+    "id": "38079701-6786-4f3d-b740-de26866142db",
+    "created_at": "2026-08-24T02:28:38.278669"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "4",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "f4240b5f-6f24-4025-b25c-29bd7d1c6c61",
+    "id": "f4240b5f-6f24-4025-b25c-29bd7d1c6c61",
+    "created_at": "2026-08-24T02:28:44.990214"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "5",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "324245bd-491e-48a5-9c57-463e1cc93019",
+    "id": "324245bd-491e-48a5-9c57-463e1cc93019",
+    "created_at": "2026-08-24T02:28:49.415767"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "6",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "86b48600-6dbe-4790-a884-a210824ebefe",
+    "id": "86b48600-6dbe-4790-a884-a210824ebefe",
+    "created_at": "2026-08-24T02:28:53.519484"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "7",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "18ff9d0f-1fdf-4904-850e-10477efdd734",
+    "id": "18ff9d0f-1fdf-4904-850e-10477efdd734",
+    "created_at": "2026-08-24T02:29:09.836723"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "numero": "3",
+    "type": "normale",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "c6b9294d-891a-4fd6-981a-16a46fd51829",
+    "id": "c6b9294d-891a-4fd6-981a-16a46fd51829",
+    "created_at": "2026-08-24T02:29:18.178636"
+  }
+]

@@ -1,0 +1,83 @@
+[
+  {
+    "total": 5,
+    "conflicts_enseignant": [
+      {
+        "type": "Conflit Enseignant",
+        "severite": "danger",
+        "jour": "Lundi",
+        "creneau": "10h15 – 12h15",
+        "enseignant": "aziz",
+        "enseignant_id": "0169cbbc-7738-4931-a6d7-473aad262733",
+        "classes": [
+          "Niveau 1 – a",
+          "Niveau 1 – b"
+        ],
+        "message": "L'enseignant « aziz » est affecté à 2 classes simultanément le Lundi (10h15 – 12h15) : Niveau 1 – a & Niveau 1 – b"
+      },
+      {
+        "type": "Conflit Enseignant",
+        "severite": "danger",
+        "jour": "Mardi",
+        "creneau": "08h00 – 10h00",
+        "enseignant": "aziz",
+        "enseignant_id": "0169cbbc-7738-4931-a6d7-473aad262733",
+        "classes": [
+          "Niveau 1 – a",
+          "Niveau 1 – b"
+        ],
+        "message": "L'enseignant « aziz » est affecté à 2 classes simultanément le Mardi (08h00 – 10h00) : Niveau 1 – a & Niveau 1 – b"
+      }
+    ],
+    "conflicts_salle": [],
+    "conflicts_classe": [
+      {
+        "type": "Conflit Classe",
+        "severite": "info",
+        "jour": "Lundi",
+        "creneau": "10h15 – 12h15",
+        "classe": "Niveau 1 – b",
+        "classe_id": "d2546230-bb70-4afb-9dc2-f415ae701636",
+        "matieres": [
+          "Mathématiques",
+          "Sport"
+        ],
+        "message": "La classe « Niveau 1 – b » a 2 cours en même temps le Lundi (10h15 – 12h15) : Mathématiques & Sport"
+      },
+      {
+        "type": "Conflit Classe",
+        "severite": "info",
+        "jour": "Mardi",
+        "creneau": "08h00 – 10h00",
+        "classe": "Niveau 1 – a",
+        "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+        "matieres": [
+          "Mathématiques",
+          "Sciences"
+        ],
+        "message": "La classe « Niveau 1 – a » a 2 cours en même temps le Mardi (08h00 – 10h00) : Mathématiques & Sciences"
+      }
+    ],
+    "nb_enseignant": 2,
+    "nb_salle": 0,
+    "nb_classe": 2,
+    "date_verification": "20/09/2026 à 18:20:16",
+    "_id": "latest",
+    "id": "latest",
+    "created_at": "2026-09-12T01:43:36.814389",
+    "conflicts_repetition": [
+      {
+        "type": "Matière Répétée",
+        "severite": "warning",
+        "jour": "Lundi",
+        "creneau": "10h15 – 12h15 & 14h00 – 16h00",
+        "classe": "Niveau 1 – a",
+        "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+        "matiere": "Mathématiques",
+        "matiere_id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+        "message": "La classe « Niveau 1 – a » étudie « Mathématiques » 2 fois le Lundi : 10h15 – 12h15 puis 14h00 – 16h00"
+      }
+    ],
+    "nb_repetition": 1
+  }
+]

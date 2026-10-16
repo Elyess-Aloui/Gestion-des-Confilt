@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestion des Matières{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h4 class="fw-bold text-dark mb-0">Gestion des Matières</h4>
+        <p class="text-secondary small mb-0">{{ matieres|length }} matière(s) enregistrée(s)</p>
+    </div>
+    <a href="{% url 'matiere_add' %}" class="btn btn-primary-custom btn-sm">
+        + Ajouter une matière
+    </a>
+</div>
+
+<div class="card p-0 overflow-hidden">
+    {% if matieres %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Nom de la matière</th>
+                    <th>Niveau(x) associé(s)</th>
+                    <th>Volume horaire (max/sem)</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for matiere in matieres %}
+                <tr>
+                    <td class="ps-4 fw-semibold text-dark">{{ matiere.nom }}</td>
+                    <td>
+                        {% for niveau in matiere.niveaux %}
+                            <span class="badge bg-light text-primary border me-1">Niveau {{ niveau }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <span class="badge bg-light text-secondary border">
+                            <i class="fa-regular fa-clock me-1"></i>{{ matiere.volume_horaire|default:4 }} h / semaine
+                        </span>
+                    </td>
+                    <td class="text-end pe-4">
+                        <div class="btn-group btn-group-sm">
+                            <a href="{% url 'matiere_edit' matiere.id %}" class="btn btn-outline-primary" title="Éditer">✏️</a>
+                            <a href="{% url 'matiere_delete' matiere.id %}" class="btn btn-outline-danger" title="Supprimer" onclick="return confirm('Supprimer la matière {{ matiere.nom }} ?');">🗑️</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="p-5 text-center">
+        <p class="text-secondary mb-3">Aucune matière enregistrée.</p>
+        <a href="{% url 'matiere_add' %}" class="btn btn-primary-custom btn-sm">+ Ajouter une matière</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

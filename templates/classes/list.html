@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Classes - {{ school.nom }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <a href="{% url 'class_school_select' %}" class="btn btn-sm btn-outline-secondary mb-2">← Changer d'école</a>
+        <h4 class="fw-bold text-dark mb-0">Classes de {{ school.nom }}</h4>
+        <p class="text-secondary small mb-0">{{ school.ville }} ({{ school.region }})</p>
+    </div>
+    <a href="{% url 'class_add' school.id %}" class="btn btn-primary-custom btn-sm">
+        + Ajouter une classe
+    </a>
+</div><div class="card p-0 overflow-hidden">
+    {% if classes %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Nom de la classe</th>
+                    <th>Niveau</th>
+                    <th>Emploi du temps</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for classe in classes %}
+                <tr>
+                    <td class="ps-4 fw-semibold text-dark">{{ classe.nom }}</td>
+                    <td><span class="badge bg-light text-dark border">Niveau {{ classe.niveau }}</span></td>
+                    <td>
+                        {% if classe.nb_seances and classe.nb_seances > 0 %}
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                                <i class="fa-solid fa-calendar-check me-1"></i> {{ classe.nb_seances }} séance(s) configurée(s)
+                            </span>
+                        {% else %}
+                            <span class="badge bg-light text-muted border">
+                                <i class="fa-regular fa-calendar-xmark me-1"></i> Non configuré
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td class="text-end pe-4">
+                        <div class="btn-group btn-group-sm">
+                            <a href="{% url 'class_timetable' classe.id %}" class="btn btn-primary-custom" title="Gérer l'emploi du temps">
+                                <i class="fa-regular fa-calendar-days me-1"></i> Emploi du temps
+                            </a>
+                            <a href="{% url 'download_class_timetable' classe.id %}" class="btn btn-outline-secondary" title="Télécharger PDF">
+                                <i class="fa-solid fa-file-pdf text-danger"></i>
+                            </a>
+                        </div>
+                        <div class="btn-group btn-group-sm ms-2">
+                            <a href="{% url 'class_edit' classe.id %}" class="btn btn-outline-secondary" title="Éditer">✏️</a>
+                            <a href="{% url 'class_delete' classe.id %}" class="btn btn-outline-danger" title="Supprimer" onclick="return confirm('Supprimer cette classe ?');">🗑️</a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="p-5 text-center">
+        <p class="text-secondary mb-3">Aucune classe enregistrée pour cet établissement.</p>
+        <a href="{% url 'class_add' school.id %}" class="btn btn-primary-custom btn-sm">+ Ajouter une classe</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

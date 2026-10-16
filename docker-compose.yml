@@ -1,0 +1,34 @@
+﻿version: '3.8'
+
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    container_name: n8n_school
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      # URL de base de n8n
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=http://localhost:5678/
+      # Fuseau horaire
+      - GENERIC_TIMEZONE=Africa/Tunis
+      # Sécurité basique (modifiez le mot de passe !)
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin123
+      # Désactiver les télémetries
+      - N8N_DIAGNOSTICS_ENABLED=false
+    volumes:
+      # Persistance des données n8n (workflows, credentials, executions)
+      - n8n_data:/home/node/.n8n
+      # Montage du dossier du projet pour accéder au workflow JSON
+      - ./:/workspace
+    extra_hosts:
+      # Permet à n8n (dans Docker) d'accéder à Django (sur l'hôte Windows)
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  n8n_data:

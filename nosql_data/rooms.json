@@ -1,0 +1,38 @@
+[
+  {
+    "school_id": "3cb16565-f04e-4f8e-bc05-d9f731a5df06",
+    "nom_salle": "Salle A101",
+    "capacite": 35,
+    "is_broken": true,
+    "broken_duration": "24h",
+    "_id": "7f2e3b8a-5c43-41a8-9e94-9ca5049dfdee",
+    "created_at": "2026-08-11T17:46:39.934183"
+  },
+  {
+    "school_id": "920bbcaf-2792-42af-911b-ba978f5c79b2",
+    "nom_salle": "Salle A101",
+    "capacite": 35,
+    "is_broken": true,
+    "broken_duration": "24h",
+    "_id": "290b5860-86b4-453a-b927-2e1b54ef1ba2",
+    "created_at": "2026-08-11T17:46:51.543657"
+  },
+  {
+    "school_id": "5397087b-ede8-466a-9363-fb005eb2ace2",
+    "nom_salle": "1",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "22fce86e-2396-4c04-bc58-67583e720e0e",
+    "created_at": "2026-08-11T17:55:40.282262"
+  },
+  {
+    "school_id": "5397087b-ede8-466a-9363-fb005eb2ace2",
+    "nom_salle": "1",
+    "capacite": 30,
+    "is_broken": false,
+    "broken_duration": "",
+    "_id": "06a2fb05-ffa6-44db-80c3-78a314d97d0d",
+    "created_at": "2026-08-11T17:56:48.329598"
+  }
+]

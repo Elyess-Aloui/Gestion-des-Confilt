@@ -1,0 +1,51 @@
+[
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "nom": "aziz",
+    "matiere_id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+    "schedule_text": "Non renseigné",
+    "_id": "0169cbbc-7738-4931-a6d7-473aad262733",
+    "id": "0169cbbc-7738-4931-a6d7-473aad262733",
+    "created_at": "2026-08-20T01:10:09.660423"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "nom": "nar",
+    "niveaux": "Niveau 1, Niveau 3",
+    "volume_horaire": 18,
+    "schedule_text": "Non renseigné",
+    "_id": "d6e6dcef-72d9-48a5-b10f-1a9f43c60e05",
+    "id": "d6e6dcef-72d9-48a5-b10f-1a9f43c60e05",
+    "created_at": "2026-08-20T03:40:34.397312"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "nom": "yasine",
+    "niveaux": "Niveau 4, Niveau 5",
+    "volume_horaire": 18,
+    "schedule_text": "Non renseigné",
+    "_id": "fe9db09e-4a31-45e2-a71b-2f76330e36e1",
+    "id": "fe9db09e-4a31-45e2-a71b-2f76330e36e1",
+    "created_at": "2026-08-24T02:27:10.609763"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "nom": "amine",
+    "niveaux": "Niveau 3, Niveau 4",
+    "volume_horaire": 18,
+    "schedule_text": "Non renseigné",
+    "_id": "7147fca6-960c-4fea-bb6d-6270749e9bf6",
+    "id": "7147fca6-960c-4fea-bb6d-6270749e9bf6",
+    "created_at": "2026-08-24T02:27:28.254687"
+  },
+  {
+    "institut_id": "231b66db-1959-44cf-bf70-4ea3c588df29",
+    "nom": "elyess",
+    "niveaux": "Niveau 1, Niveau 5",
+    "volume_horaire": 18,
+    "schedule_text": "Non renseigné",
+    "_id": "5953ffcb-ba68-48b0-aba4-85dfcd9ae3a7",
+    "id": "5953ffcb-ba68-48b0-aba4-85dfcd9ae3a7",
+    "created_at": "2026-08-24T02:27:52.679082"
+  }
+]

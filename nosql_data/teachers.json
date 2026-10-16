@@ -1,0 +1,32 @@
+[
+  {
+    "school_id": "3cb16565-f04e-4f8e-bc05-d9f731a5df06",
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "email": "jean.dupont@email.com",
+    "specialite": "Mathématiques",
+    "schedule_text": "Lundi 8h-12h",
+    "_id": "6a434ae5-fa0c-448a-9f59-2c78a3be6914",
+    "created_at": "2026-08-11T17:46:39.921238"
+  },
+  {
+    "school_id": "920bbcaf-2792-42af-911b-ba978f5c79b2",
+    "nom": "Dupont",
+    "prenom": "Jean",
+    "email": "jean.dupont@email.com",
+    "specialite": "Mathématiques",
+    "schedule_text": "Lundi 8h-12h",
+    "_id": "eafeaa73-4b83-48da-a4ec-d6220ff0082c",
+    "created_at": "2026-08-11T17:46:51.542310"
+  },
+  {
+    "school_id": "5397087b-ede8-466a-9363-fb005eb2ace2",
+    "nom": "aziz",
+    "prenom": "nar",
+    "email": "aziznar23@gmail.com",
+    "specialite": "mathematique",
+    "schedule_text": "Lundi-Vendredi: 08h00 - 16h00",
+    "_id": "a40ae336-91a5-40ba-91a9-95ec05712a30",
+    "created_at": "2026-08-11T18:13:59.027257"
+  }
+]

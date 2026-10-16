@@ -1,0 +1,9 @@
+[
+  {
+    "username": "aziz",
+    "email": "aziznar23@gmail.com",
+    "password_hash": "pbkdf2_sha256$1000000$yiLAdiezx3cyIfYE82lSGo$sTeGJs2bWpnyUsBECnTY7Pni5BTKbRmHi6N4Yp97XvA=",
+    "_id": "73e61964-0bba-4476-a437-844ec3b8546f",
+    "created_at": "2026-08-11T17:50:16.228969"
+  }
+]

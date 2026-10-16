@@ -1,0 +1,23 @@
+[
+  {
+    "nom": "Lycée Louis le Grand",
+    "region": "Île-de-France",
+    "ville": "Paris",
+    "_id": "3cb16565-f04e-4f8e-bc05-d9f731a5df06",
+    "created_at": "2026-08-11T17:46:39.919306"
+  },
+  {
+    "nom": "Lycée Louis le Grand",
+    "region": "Île-de-France",
+    "ville": "Paris",
+    "_id": "920bbcaf-2792-42af-911b-ba978f5c79b2",
+    "created_at": "2026-08-11T17:46:51.540546"
+  },
+  {
+    "nom": "habib bouguiba",
+    "region": "tunis",
+    "ville": "ras jebel",
+    "_id": "5397087b-ede8-466a-9363-fb005eb2ace2",
+    "created_at": "2026-08-11T17:51:36.126903"
+  }
+]

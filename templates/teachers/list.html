@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Enseignants - {{ school.nom }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <a href="{% url 'teacher_school_select' %}" class="btn btn-sm btn-outline-secondary mb-2">← Changer d'école</a>
+        <h4 class="fw-bold text-dark mb-0">Enseignants de {{ school.nom }}</h4>
+        <p class="text-secondary small mb-0">{{ school.ville }} ({{ school.region }})</p>
+    </div>
+    <a href="{% url 'teacher_add' school.id %}" class="btn btn-primary-custom btn-sm">
+        + Ajouter un enseignant
+    </a>
+</div>
+
+<div class="card p-0 overflow-hidden">
+    {% if teachers %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Nom complet</th>
+                    <th>Niveau(x) enseigné(s)</th>
+                    <th>Volume horaire (max/sem)</th>
+                    <th>Emploi du temps</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for teacher in teachers %}
+                <tr>
+                    <td class="ps-4 fw-semibold text-dark">{{ teacher.nom }}</td>
+                    <td><span class="badge bg-light text-primary border">{{ teacher.niveaux|default:"Niveau 1, 2" }}</span></td>
+                    <td><span class="badge bg-light text-secondary border"><i class="fa-regular fa-clock me-1"></i>{{ teacher.volume_horaire|default:18 }} h / semaine</span></td>
+                    <td>
+                        {% if teacher.nb_seances and teacher.nb_seances > 0 %}
+                            <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">
+                                <i class="fa-solid fa-calendar-check me-1"></i> {{ teacher.nb_seances }} séance(s)
+                            </span>
+                        {% else %}
+                            <span class="badge bg-light text-muted border">
+                                <i class="fa-regular fa-calendar-xmark me-1"></i> Non configuré
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td class="text-end pe-4">
+                        <div class="btn-group btn-group-sm">
+                            <!-- Timetable Link -->
+                            <a href="{% url 'teacher_timetable' teacher.id %}" class="btn btn-primary-custom" title="Gérer l'emploi du temps">
+                                <i class="fa-regular fa-calendar-days me-1"></i> Emploi du temps
+                            </a>
+                            <a href="{% url 'download_teacher_timetable' teacher.id %}" class="btn btn-outline-secondary" title="Télécharger PDF">
+                                <i class="fa-solid fa-file-pdf text-danger"></i>
+                            </a>
+                            <!-- Absence Claim Modal Trigger -->
+                            <button class="btn btn-outline-warning text-dark" data-bs-toggle="modal" data-bs-target="#claimModal{{ teacher.id }}">
+                                Réclamation d'absence
+                            </button>
+                        </div>
+                        <div class="btn-group btn-group-sm ms-2">
+                            <a href="{% url 'teacher_edit' teacher.id %}" class="btn btn-outline-primary" title="Éditer">✏️</a>
+                            <a href="{% url 'teacher_delete' teacher.id %}" class="btn btn-outline-danger" title="Supprimer" onclick="return confirm('Supprimer cet enseignant ?');">🗑️</a>
+                        </div>
+
+                        <!-- Absence Claim Modal -->
+                        <div class="modal fade" id="claimModal{{ teacher.id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content text-start">
+                                    <form action="{% url 'absence_claim_add' teacher.id %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Réclamation d'absence</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-secondary small mb-3">Enseignant : <strong>{{ teacher.nom }}</strong></p>
+                                            <div class="mb-3">
+                                                <label class="form-label text-secondary small">Motif de l'absence</label>
+                                                {{ claim_form.reason }}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-6 mb-3">
+                                                    <label class="form-label text-secondary small">Date début</label>
+                                                    {{ claim_form.date_start }}
+                                                </div>
+                                                <div class="col-6 mb-3">
+                                                    <label class="form-label text-secondary small">Date fin</label>
+                                                    {{ claim_form.date_end }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-sm btn-primary-custom">Enregistrer la réclamation</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="p-5 text-center">
+        <p class="text-secondary mb-3">Aucun enseignant rattaché à cet établissement.</p>
+        <a href="{% url 'teacher_add' school.id %}" class="btn btn-primary-custom btn-sm">+ Ajouter un enseignant</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

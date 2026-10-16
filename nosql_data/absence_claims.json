@@ -1,0 +1,13 @@
+[
+  {
+    "teacher_id": "a40ae336-91a5-40ba-91a9-95ec05712a30",
+    "school_id": "5397087b-ede8-466a-9363-fb005eb2ace2",
+    "teacher_name": "nar aziz",
+    "reason": "maladie",
+    "date_start": "2026-03-27",
+    "date_end": "2027-03-29",
+    "status": "En attente",
+    "_id": "33feec06-6776-457c-b78e-d9dfb4b78258",
+    "created_at": "2026-08-11T18:19:42.097826"
+  }
+]

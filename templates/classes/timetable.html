@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+
+{% block title %}Emploi du temps - {{ classe.nom }} (Niveau {{ classe.niveau }}){% endblock %}
+
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-2">
+    <div>
+        <a href="{% url 'class_list' school.id %}" class="btn btn-sm btn-outline-secondary mb-2">
+            <i class="fa-solid fa-arrow-left me-1"></i> Retour aux classes
+        </a>
+        <h4 class="fw-bold text-dark mb-0">
+            <i class="fa-regular fa-calendar-days text-primary me-2"></i>
+            Emploi du Temps : Niveau {{ classe.niveau }} - {{ classe.nom }}
+        </h4>
+        <p class="text-secondary small mb-0">
+            Établissement : <strong>{{ school.nom }}</strong> ({{ school.ville }}, {{ school.region }})
+            {% if date_modification %}
+                <span class="ms-2 badge bg-light text-muted border">Dernière mise à jour : {{ date_modification }}</span>
+            {% endif %}
+        </p>
+    </div>
+    <div class="d-flex gap-2">
+        <a href="{% url 'download_class_timetable' classe.id %}" class="btn btn-sm btn-outline-danger">
+            <i class="fa-solid fa-file-pdf me-1"></i> Télécharger en PDF
+        </a>
+    </div>
+</div>
+
+<form method="post" id="timetableForm">
+    {% csrf_token %}
+    <div class="card shadow-sm border-0 mb-4">
+        <div class="card-header bg-white py-3 border-bottom d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+                <h6 class="mb-0 fw-bold text-dark">
+                    <i class="fa-solid fa-table-cells me-2 text-primary"></i>Planning hebdomadaire des séances
+                </h6>
+                <span class="small text-muted">Cliquez sur une case pour choisir et affecter la matière, l'enseignant et la salle.</span>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary-custom px-3 shadow-sm">
+                <i class="fa-solid fa-floppy-disk me-1"></i> Enregistrer l'emploi du temps
+            </button>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle mb-0 text-center" style="min-width: 900px;">
+                    <thead class="table-light">
+                        <tr>
+                            <th style="width: 140px;" class="py-3 text-secondary text-uppercase small fw-bold">Horaire</th>
+                            {% for jour_key, jour_label in jours %}
+                            <th class="py-3 text-primary text-uppercase small fw-bold">{{ jour_label }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in grid_rows %}
+                        <tr>
+                            <td class="fw-bold text-secondary bg-light small py-3 align-middle">
+                                <i class="fa-regular fa-clock me-1 text-primary"></i>
+                                {{ row.slot_label }}
+                            </td>
+                            {% for day in row.days %}
+                            <td class="p-2 align-middle text-center bg-white" style="width: 16%;">
+                                <!-- Hidden form inputs for submission -->
+                                <input type="hidden" name="seance_{{ day.jour_key }}_{{ row.slot_idx }}_matiere" id="input_{{ day.jour_key }}_{{ row.slot_idx }}_matiere" value="{{ day.matiere_id }}">
+                                <input type="hidden" name="seance_{{ day.jour_key }}_{{ row.slot_idx }}_enseignant" id="input_{{ day.jour_key }}_{{ row.slot_idx }}_enseignant" value="{{ day.enseignant_id }}">
+                                <input type="hidden" name="seance_{{ day.jour_key }}_{{ row.slot_idx }}_salle" id="input_{{ day.jour_key }}_{{ row.slot_idx }}_salle" value="{{ day.salle_id }}">
+
+                                <!-- Slot visual container -->
+                                <div id="slot_box_{{ day.jour_key }}_{{ row.slot_idx }}" 
+                                     class="slot-cell-box {% if day.matiere_id or day.enseignant_id or day.salle_id %}slot-filled{% else %}slot-empty{% endif %}"
+                                     onclick="openSlotModal('{{ day.jour_key }}', '{{ day.jour_label }}', '{{ row.slot_idx }}', '{{ row.slot_label }}')">
+                                    
+                                    <div class="slot-content-filled {% if not day.matiere_id and not day.enseignant_id and not day.salle_id %}d-none{% endif %}" id="content_filled_{{ day.jour_key }}_{{ row.slot_idx }}">
+                                        <div class="d-flex justify-content-between align-items-start mb-1">
+                                            <div class="fw-bold text-primary text-truncate" style="font-size: 0.85rem;" id="display_{{ day.jour_key }}_{{ row.slot_idx }}_matiere">
+                                                {{ day.matiere_nom|default:"Matière non définie" }}
+                                            </div>
+                                            <button type="button" class="btn-clear-slot" title="Effacer" onclick="clearSlot(event, '{{ day.jour_key }}', '{{ row.slot_idx }}')">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </div>
+                                        <div class="text-secondary small text-truncate mb-1" style="font-size: 0.78rem;" id="display_{{ day.jour_key }}_{{ row.slot_idx }}_enseignant">
+                                            <i class="fa-solid fa-chalkboard-user text-success me-1"></i>{{ day.enseignant_nom|default:"Non assigné" }}
+                                        </div>
+                                        <div class="text-success small text-truncate" style="font-size: 0.75rem;" id="display_{{ day.jour_key }}_{{ row.slot_idx }}_salle">
+                                            <i class="fa-solid fa-door-open text-warning me-1"></i>Salle : {{ day.salle_numero|default:"-" }}
+                                        </div>
+                                    </div>
+
+                                    <div class="slot-content-empty {% if day.matiere_id or day.enseignant_id or day.salle_id %}d-none{% endif %}" id="content_empty_{{ day.jour_key }}_{{ row.slot_idx }}">
+                                        <i class="fa-solid fa-plus text-muted mb-1" style="font-size: 1rem;"></i>
+                                        <span class="d-block text-muted small" style="font-size: 0.75rem;">Choisir</span>
+                                    </div>
+                                </div>
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer bg-white p-3 border-top">
+            <div class="row align-items-center">
+                <div class="col-md-7 mb-2 mb-md-0">
+                    <label class="form-label small text-secondary fw-semibold mb-1">
+                        <i class="fa-regular fa-comment-dots me-1"></i>Remarques / Notes sur l'emploi du temps (optionnel) :
+                    </label>
+                    <input type="text" name="commentaire" class="form-control form-control-sm" placeholder="Ex: Début des cours le 15 septembre..." value="{{ commentaire }}">
+                </div>
+                <div class="col-md-5 text-md-end d-flex justify-content-md-end gap-2 align-items-end pt-md-3">
+                    <a href="{% url 'class_list' school.id %}" class="btn btn-sm btn-outline-secondary">Annuler</a>
+                    <button type="submit" class="btn btn-sm btn-primary-custom px-4 shadow-sm">
+                        <i class="fa-solid fa-check me-1"></i> Enregistrer l'emploi du temps
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Modal d'édition d'une case / séance -->
+<div class="modal fade" id="slotEditModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+            <div class="modal-header bg-light">
+                <div>
+                    <h5 class="modal-title fw-bold text-dark mb-0">
+                        <i class="fa-solid fa-pen-to-square text-primary me-2"></i>Affecter la Séance
+                    </h5>
+                    <p class="text-secondary small mb-0" id="modalSlotSubtitle">Lundi | 08h00 - 10h00</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-4">
+                <div class="mb-3">
+                    <label class="form-label text-secondary small fw-semibold">
+                        <i class="fa-solid fa-book-open text-primary me-1"></i>Matière
+                    </label>
+                    <select id="modal_select_matiere" class="form-select">
+                        <option value="">-- Sélectionner une matière --</option>
+                        {% for m in matieres %}
+                        <option value="{{ m.id }}" data-nom="{{ m.nom }}">{{ m.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label text-secondary small fw-semibold">
+                        <i class="fa-solid fa-chalkboard-user text-success me-1"></i>Enseignant
+                    </label>
+                    <select id="modal_select_enseignant" class="form-select">
+                        <option value="">-- Sélectionner un enseignant --</option>
+                        {% for t in teachers %}
+                        <option value="{{ t.id }}" data-nom="{{ t.nom }}">{{ t.nom }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label text-secondary small fw-semibold">
+                        <i class="fa-solid fa-door-open text-warning me-1"></i>Salle de cours
+                    </label>
+                    <select id="modal_select_salle" class="form-select">
+                        <option value="">-- Sélectionner une salle --</option>
+                        {% for s in rooms %}
+                        <option value="{{ s.id }}" data-numero="{{ s.numero }}" {% if s.is_broken %}class="text-danger"{% endif %}>
+                            {{ s.numero }} {% if s.is_broken %}(En panne){% endif %}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer bg-light justify-content-between">
+                <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearCurrentModalSlot()">
+                    <i class="fa-solid fa-trash me-1"></i> Vider la case
+                </button>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-sm btn-primary-custom px-3" onclick="saveModalSlot()">
+                        <i class="fa-solid fa-check me-1"></i> Valider
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .slot-cell-box {
+        cursor: pointer;
+        min-height: 85px;
+        padding: 8px;
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: left;
+    }
+    .slot-empty {
+        border: 2px dashed #cbd5e1;
+        background-color: #f8fafc;
+        align-items: center;
+        text-align: center;
+    }
+    .slot-empty:hover {
+        border-color: #6366f1;
+        background-color: #eef2ff;
+    }
+    .slot-filled {
+        background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+        border: 1px solid #c7d2fe;
+        border-left: 3px solid #4f46e5;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .slot-filled:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(79, 70, 229, 0.15);
+        border-color: #818cf8;
+    }
+    .btn-clear-slot {
+        background: transparent;
+        border: none;
+        color: #94a3b8;
+        padding: 0 4px;
+        font-size: 0.75rem;
+        border-radius: 4px;
+    }
+    .btn-clear-slot:hover {
+        color: #ef4444;
+        background: #fee2e2;
+    }
+</style>
+
+<script>
+let currentJour = '';
+let currentSlot = '';
+let modalInstance = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    modalInstance = new bootstrap.Modal(document.getElementById('slotEditModal'));
+});
+
+function openSlotModal(jourKey, jourLabel, slotIdx, slotLabel) {
+    currentJour = jourKey;
+    currentSlot = slotIdx;
+
+    document.getElementById('modalSlotSubtitle').textContent = `${jourLabel} | ${slotLabel}`;
+
+    const currentMatiere = document.getElementById(`input_${jourKey}_${slotIdx}_matiere`).value;
+    const currentEnseignant = document.getElementById(`input_${jourKey}_${slotIdx}_enseignant`).value;
+    const currentSalle = document.getElementById(`input_${jourKey}_${slotIdx}_salle`).value;
+
+    document.getElementById('modal_select_matiere').value = currentMatiere || '';
+    document.getElementById('modal_select_enseignant').value = currentEnseignant || '';
+    document.getElementById('modal_select_salle').value = currentSalle || '';
+
+    modalInstance.show();
+}
+
+function saveModalSlot() {
+    const matSelect = document.getElementById('modal_select_matiere');
+    const ensSelect = document.getElementById('modal_select_enseignant');
+    const salSelect = document.getElementById('modal_select_salle');
+
+    const mId = matSelect.value;
+    const eId = ensSelect.value;
+    const sId = salSelect.value;
+
+    const mNom = matSelect.options[matSelect.selectedIndex]?.dataset.nom || '';
+    const eNom = ensSelect.options[ensSelect.selectedIndex]?.dataset.nom || '';
+    const sNum = salSelect.options[salSelect.selectedIndex]?.dataset.numero || '';
+
+    document.getElementById(`input_${currentJour}_${currentSlot}_matiere`).value = mId;
+    document.getElementById(`input_${currentJour}_${currentSlot}_enseignant`).value = eId;
+    document.getElementById(`input_${currentJour}_${currentSlot}_salle`).value = sId;
+
+    const slotBox = document.getElementById(`slot_box_${currentJour}_${currentSlot}`);
+    const filledContent = document.getElementById(`content_filled_${currentJour}_${currentSlot}`);
+    const emptyContent = document.getElementById(`content_empty_${currentJour}_${currentSlot}`);
+
+    if (mId || eId || sId) {
+        document.getElementById(`display_${currentJour}_${currentSlot}_matiere`).textContent = mNom || 'Matière non définie';
+        document.getElementById(`display_${currentJour}_${currentSlot}_enseignant`).innerHTML = `<i class="fa-solid fa-chalkboard-user text-success me-1"></i>${eNom || 'Non assigné'}`;
+        document.getElementById(`display_${currentJour}_${currentSlot}_salle`).innerHTML = `<i class="fa-solid fa-door-open text-warning me-1"></i>Salle : ${sNum || '-'}`;
+
+        slotBox.classList.remove('slot-empty');
+        slotBox.classList.add('slot-filled');
+        filledContent.classList.remove('d-none');
+        emptyContent.classList.add('d-none');
+    } else {
+        slotBox.classList.add('slot-empty');
+        slotBox.classList.remove('slot-filled');
+        filledContent.classList.add('d-none');
+        emptyContent.classList.remove('d-none');
+    }
+
+    modalInstance.hide();
+}
+
+function clearCurrentModalSlot() {
+    document.getElementById('modal_select_matiere').value = '';
+    document.getElementById('modal_select_enseignant').value = '';
+    document.getElementById('modal_select_salle').value = '';
+    saveModalSlot();
+}
+
+function clearSlot(event, jourKey, slotIdx) {
+    event.stopPropagation();
+    document.getElementById(`input_${jourKey}_${slotIdx}_matiere`).value = '';
+    document.getElementById(`input_${jourKey}_${slotIdx}_enseignant`).value = '';
+    document.getElementById(`input_${jourKey}_${slotIdx}_salle`).value = '';
+
+    const slotBox = document.getElementById(`slot_box_${jourKey}_${slotIdx}`);
+    const filledContent = document.getElementById(`content_filled_${jourKey}_${slotIdx}`);
+    const emptyContent = document.getElementById(`content_empty_${jourKey}_${slotIdx}`);
+
+    slotBox.classList.add('slot-empty');
+    slotBox.classList.remove('slot-filled');
+    filledContent.classList.add('d-none');
+    emptyContent.classList.remove('d-none');
+}
+</script>
+{% endblock %}

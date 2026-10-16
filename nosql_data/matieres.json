@@ -1,0 +1,65 @@
+[
+  {
+    "nom": "Français",
+    "_id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+    "id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+    "created_at": "2026-08-20T01:02:35.761269",
+    "niveaux": [
+      "1",
+      "2",
+      "3"
+    ],
+    "volume_horaire": 6
+  },
+  {
+    "nom": "Mathématiques",
+    "_id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+    "id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+    "created_at": "2026-08-20T01:02:35.763247",
+    "niveaux": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ],
+    "volume_horaire": 8
+  },
+  {
+    "nom": "Sciences",
+    "_id": "f81ec65d-f6ea-42f8-aba2-ae5c17186e59",
+    "id": "f81ec65d-f6ea-42f8-aba2-ae5c17186e59",
+    "created_at": "2026-08-20T01:02:35.763827"
+  },
+  {
+    "nom": "Histoire & Géographie",
+    "_id": "99583442-3e99-4af3-a6a4-02afd2a5a3d5",
+    "id": "99583442-3e99-4af3-a6a4-02afd2a5a3d5",
+    "created_at": "2026-08-20T01:02:35.764475"
+  },
+  {
+    "nom": "Anglais",
+    "_id": "dc4a6324-605d-4d0f-9b27-c26369e51901",
+    "id": "dc4a6324-605d-4d0f-9b27-c26369e51901",
+    "created_at": "2026-08-20T01:02:35.765160"
+  },
+  {
+    "nom": "Arts",
+    "_id": "b2da7ee4-0ecc-46f3-9777-e19342f234f3",
+    "id": "b2da7ee4-0ecc-46f3-9777-e19342f234f3",
+    "created_at": "2026-08-20T01:02:35.765865"
+  },
+  {
+    "nom": "Sport",
+    "_id": "da3e4b1c-cd18-4041-aa87-97900c38d69f",
+    "id": "da3e4b1c-cd18-4041-aa87-97900c38d69f",
+    "created_at": "2026-08-20T01:02:35.766480"
+  },
+  {
+    "nom": "Informatique",
+    "_id": "cd87c8d7-13b9-43fc-990f-41f9d6e9a64f",
+    "id": "cd87c8d7-13b9-43fc-990f-41f9d6e9a64f",
+    "created_at": "2026-08-20T01:02:35.767022"
+  }
+]

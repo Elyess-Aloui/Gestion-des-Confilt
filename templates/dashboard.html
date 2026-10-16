@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestion des emplois du temps - Tableau de bord{% endblock %}
+
+{% block content %}
+<!-- Welcome Banner -->
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4 pb-2 border-bottom">
+    <div>
+        <h3 class="fw-bold text-dark mb-1">
+            <i class="fa-solid fa-gauge-high text-primary me-2"></i>Tableau de bord
+        </h3>
+        <p class="text-secondary small mb-0">Accédez rapidement à la gestion de vos établissements, ressources pédagogiques et emplois du temps.</p>
+    </div>
+    <div class="d-flex gap-2 mt-3 mt-md-0">
+        <a href="{% url 'school_add' %}" class="btn btn-outline-primary btn-sm rounded-3">
+            <i class="fa-solid fa-plus me-1"></i> École
+        </a>
+        <a href="{% url 'matiere_add' %}" class="btn btn-outline-primary btn-sm rounded-3">
+            <i class="fa-solid fa-plus me-1"></i> Matière
+        </a>
+        <a href="{% url 'detect_conflicts' %}" class="btn btn-danger btn-sm rounded-3">
+            <i class="fa-solid fa-triangle-exclamation me-1"></i> Vérifier les emplois
+        </a>
+    </div>
+</div>
+
+<!-- Quick Stats Summary Row -->
+<div class="row g-3 mb-4">
+    <div class="col-6 col-md-4 col-lg">
+        <div class="card border-0 shadow-sm p-3 bg-white text-center">
+            <div class="text-secondary small fw-medium">Écoles</div>
+            <div class="fs-4 fw-bold text-primary mt-1">{{ schools_count }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg">
+        <div class="card border-0 shadow-sm p-3 bg-white text-center">
+            <div class="text-secondary small fw-medium">Matières</div>
+            <div class="fs-4 fw-bold text-primary mt-1">{{ matieres_count }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-lg">
+        <div class="card border-0 shadow-sm p-3 bg-white text-center">
+            <div class="text-secondary small fw-medium">Enseignants</div>
+            <div class="fs-4 fw-bold text-primary mt-1">{{ teachers_count }}</div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-lg">
+        <div class="card border-0 shadow-sm p-3 bg-white text-center">
+            <div class="text-secondary small fw-medium">Salles</div>
+            <div class="fs-4 fw-bold text-primary mt-1">{{ salles_count }}</div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg">
+        <div class="card border-0 shadow-sm p-3 bg-white text-center">
+            <div class="text-secondary small fw-medium">Classes</div>
+            <div class="fs-4 fw-bold text-primary mt-1">{{ classes_count }}</div>
+        </div>
+    </div>
+</div>
+
+<!-- 5 Management Modules Grid -->
+<div class="row g-4 mb-4">
+    
+    <!-- Module 1: Écoles -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card p-4 h-100 border-0 shadow-sm d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="step-circle step-active">1</div>
+                    <h5 class="fw-bold mb-0 text-dark">Écoles</h5>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2">
+                    <i class="fa-solid fa-school me-1"></i>{{ schools_count }}
+                </span>
+            </div>
+            <p class="text-secondary small mb-4 flex-grow-1">
+                Gérer la liste des établissements scolaires, leurs régions et leurs villes réparties sur le territoire.
+            </p>
+            <div class="mt-auto d-flex flex-column gap-2">
+                <a href="{% url 'school_list' %}" class="btn btn-outline-secondary btn-sm w-100 text-start d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-list me-2 text-muted"></i>Liste des écoles</span>
+                    <i class="fa-solid fa-chevron-right text-muted small"></i>
+                </a>
+                <a href="{% url 'school_add' %}" class="btn btn-primary-custom btn-sm w-100 text-center">
+                    <i class="fa-solid fa-plus me-1"></i> Ajouter une école
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Module 2: Matières -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card p-4 h-100 border-0 shadow-sm d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="step-circle step-active">2</div>
+                    <h5 class="fw-bold mb-0 text-dark">Matières</h5>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2">
+                    <i class="fa-solid fa-book-open me-1"></i>{{ matieres_count }}
+                </span>
+            </div>
+            <p class="text-secondary small mb-4 flex-grow-1">
+                Configurer les programmes de matières, leurs 6 niveaux scolaires associés et leurs volumes horaires hebdomadaires.
+            </p>
+            <div class="mt-auto d-flex flex-column gap-2">
+                <a href="{% url 'matiere_list' %}" class="btn btn-outline-secondary btn-sm w-100 text-start d-flex justify-content-between align-items-center">
+                    <span><i class="fa-solid fa-list me-2 text-muted"></i>Liste des matières</span>
+                    <i class="fa-solid fa-chevron-right text-muted small"></i>
+                </a>
+                <a href="{% url 'matiere_add' %}" class="btn btn-primary-custom btn-sm w-100 text-center">
+                    <i class="fa-solid fa-plus me-1"></i> Ajouter une matière
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Module 3: Enseignants -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card p-4 h-100 border-0 shadow-sm d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="step-circle step-active">3</div>
+                    <h5 class="fw-bold mb-0 text-dark">Enseignants</h5>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2">
+                    <i class="fa-solid fa-chalkboard-user me-1"></i>{{ teachers_count }}
+                </span>
+            </div>
+            <p class="text-secondary small mb-4 flex-grow-1">
+                Gérer le corps enseignant par établissement, leurs créneaux disponibles et leurs réclamations d'absence.
+            </p>
+            <div class="mt-auto">
+                <a href="{% url 'teacher_school_select' %}" class="btn btn-primary-custom btn-sm w-100 text-center py-2">
+                    Accéder aux Enseignants <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Module 4: Salles -->
+    <div class="col-md-6 col-lg-6">
+        <div class="card p-4 h-100 border-0 shadow-sm d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="step-circle step-active">4</div>
+                    <h5 class="fw-bold mb-0 text-dark">Salles de cours</h5>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2">
+                    <i class="fa-solid fa-door-open me-1"></i>{{ salles_count }}
+                </span>
+            </div>
+            <p class="text-secondary small mb-4 flex-grow-1">
+                Contrôler la capacité des salles, leur type (classe, labo, info, sport) et déclarer les pannes temporaires.
+            </p>
+            <div class="mt-auto">
+                <a href="{% url 'room_school_select' %}" class="btn btn-primary-custom btn-sm w-100 text-center py-2">
+                    Accéder aux Salles <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Module 5: Classes -->
+    <div class="col-md-12 col-lg-6">
+        <div class="card p-4 h-100 border-0 shadow-sm d-flex flex-column">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="step-circle step-active">5</div>
+                    <h5 class="fw-bold mb-0 text-dark">Classes & Emplois du temps</h5>
+                </div>
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill px-3 py-2">
+                    <i class="fa-solid fa-users me-1"></i>{{ classes_count }}
+                </span>
+            </div>
+            <p class="text-secondary small mb-4 flex-grow-1">
+                Attribuer les emplois du temps hebdomadaires par classe et exporter/télécharger les plannings officiels en PDF.
+            </p>
+            <div class="mt-auto">
+                <a href="{% url 'class_school_select' %}" class="btn btn-primary-custom btn-sm w-100 text-center py-2">
+                    Accéder aux Classes & Planning <i class="fa-solid fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+

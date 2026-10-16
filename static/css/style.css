@@ -1,0 +1,109 @@
+body {
+    background-color: #f5f6f8;
+    color: #1f2937;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #111827 !important;
+}
+
+.nav-link {
+    color: #4b5563 !important;
+    font-weight: 500;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #4f46e5 !important;
+}
+
+.card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.step-active { background: #4f46e5; color: #fff; }
+.step-done { background: #16a34a; color: #fff; }
+.step-pending { background: #e5e7eb; color: #6b7280; }
+.step-line { flex: 1; height: 2px; background: #e5e7eb; margin-top: 15px; }
+.step-label { font-size: 13px; margin-top: 6px; color: #6b7280; }
+.step-label.active { color: #111827; font-weight: 600; }
+
+.btn-primary-custom {
+    background-color: #4f46e5;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 1.25rem;
+    font-weight: 500;
+}
+
+.btn-primary-custom:hover {
+    background-color: #4338ca;
+    color: #ffffff;
+}
+
+.badge-broken {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    padding: 0.35em 0.75em;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.825rem;
+}
+
+.badge-ok {
+    background-color: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+    padding: 0.35em 0.75em;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.825rem;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table th {
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+    vertical-align: middle;
+    color: #374151;
+    font-size: 0.9rem;
+}

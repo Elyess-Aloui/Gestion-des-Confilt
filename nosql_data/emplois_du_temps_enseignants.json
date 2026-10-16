@@ -1,0 +1,428 @@
+[
+  {
+    "teacher_id": "0169cbbc-7738-4931-a6d7-473aad262733",
+    "seances": {
+      "lundi": {
+        "0": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+          "salle_id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4"
+        },
+        "1": {
+          "classe_id": "d2546230-bb70-4afb-9dc2-f415ae701636",
+          "matiere_id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+          "salle_id": "38079701-6786-4f3d-b740-de26866142db"
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mardi": {
+        "0": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+          "salle_id": "38079701-6786-4f3d-b740-de26866142db"
+        },
+        "1": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "dc4a6324-605d-4d0f-9b27-c26369e51901",
+          "salle_id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4"
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mercredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "jeudi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "vendredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "samedi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      }
+    },
+    "commentaire": "Remarque enseignant",
+    "date_modification": "2026-08-24 03:18",
+    "_id": "d77b5bb7-cef6-42f0-93b1-2b611e8d3af6",
+    "id": "d77b5bb7-cef6-42f0-93b1-2b611e8d3af6",
+    "created_at": "2026-08-24T02:32:01.044475"
+  },
+  {
+    "teacher_id": "d6e6dcef-72d9-48a5-b10f-1a9f43c60e05",
+    "seances": {
+      "lundi": {
+        "0": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+          "salle_id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4"
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mardi": {
+        "0": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "4871ed9a-b2e4-47a2-b798-0b4003569021",
+          "salle_id": "38079701-6786-4f3d-b740-de26866142db"
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mercredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "jeudi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "vendredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "samedi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      }
+    },
+    "commentaire": "",
+    "date_modification": "2026-09-12 02:03",
+    "_id": "2213c529-242c-4693-bdaa-e13d102b6015",
+    "id": "2213c529-242c-4693-bdaa-e13d102b6015",
+    "created_at": "2026-08-24T03:57:49.213175"
+  },
+  {
+    "teacher_id": "5953ffcb-ba68-48b0-aba4-85dfcd9ae3a7",
+    "seances": {
+      "lundi": {
+        "0": {
+          "classe_id": "2084164d-d32f-4c0d-a6e1-aede3d12b253",
+          "matiere_id": "97ac1ef9-3f99-47cd-91ba-05ba2d4478bb",
+          "salle_id": "b29e558e-d595-4218-b3bd-3d08aca9f3c4"
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mardi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "mercredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "jeudi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "vendredi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      },
+      "samedi": {
+        "0": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "1": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "2": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        },
+        "3": {
+          "classe_id": "",
+          "matiere_id": "",
+          "salle_id": ""
+        }
+      }
+    },
+    "commentaire": "",
+    "date_modification": "2026-09-12 03:01",
+    "_id": "13c2d735-b474-4334-a459-aed7aa22c97c",
+    "id": "13c2d735-b474-4334-a459-aed7aa22c97c",
+    "created_at": "2026-09-12T03:01:18.177321"
+  }
+]

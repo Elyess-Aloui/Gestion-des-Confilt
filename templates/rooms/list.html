@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Salles - {{ school.nom }}{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <a href="{% url 'room_school_select' %}" class="btn btn-sm btn-outline-secondary mb-2">← Changer d'école</a>
+        <h4 class="fw-bold text-dark mb-0">Salles de {{ school.nom }}</h4>
+        <p class="text-secondary small mb-0">{{ school.ville }} ({{ school.region }})</p>
+    </div>
+    <a href="{% url 'room_add' school.id %}" class="btn btn-primary-custom btn-sm">
+        + Ajouter une salle
+    </a>
+</div>
+
+<div class="card p-0 overflow-hidden">
+    {% if rooms %}
+    <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th class="ps-4">Numéro de salle</th>
+                    <th>Type</th>
+                    <th>Capacité</th>
+                    <th>Statut</th>
+                    <th class="text-end pe-4">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for room in rooms %}
+                <tr>
+                    <td class="ps-4 fw-semibold text-dark">{{ room.numero }}</td>
+                    <td><span class="badge bg-light text-secondary border">{{ room.type_display|default:room.type }}</span></td>
+                    <td><span class="badge bg-light text-dark border"><i class="fa-solid fa-users me-1 text-primary"></i>{{ room.capacite|default:30 }} places</span></td>
+                    <td>
+                        {% if room.is_broken %}
+                            <span class="badge-broken">EN PANNE (Durée : {{ room.broken_duration }})</span>
+                        {% else %}
+                            <span class="badge-ok">Opérationnel</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-end pe-4">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#breakdownModal{{ room.id }}">
+                                En panne
+                            </button>
+                        </div>
+                        <div class="btn-group btn-group-sm ms-2">
+                            <a href="{% url 'room_edit' room.id %}" class="btn btn-outline-primary" title="Éditer">✏️</a>
+                            <a href="{% url 'room_delete' room.id %}" class="btn btn-outline-danger" title="Supprimer" onclick="return confirm('Supprimer cette salle ?');">🗑️</a>
+                        </div>
+
+                        <!-- Breakdown Modal -->
+                        <div class="modal fade" id="breakdownModal{{ room.id }}" tabindex="-1">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content text-start">
+                                    <form action="{% url 'room_mark_broken' room.id %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title fw-bold">Signaler salle en panne</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="text-secondary small mb-3">Salle : <strong>{{ room.numero }}</strong></p>
+                                            <div class="mb-3">
+                                                <label class="form-label text-secondary small">Durée exacte de la panne</label>
+                                                <input type="text" name="broken_duration" class="form-control" placeholder="Ex: 48 heures, 3 jours" value="{{ room.broken_duration }}">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                            <button type="submit" class="btn btn-sm btn-danger">Enregistrer l'état</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="p-5 text-center">
+        <p class="text-secondary mb-3">Aucune salle enregistrée pour cet établissement.</p>
+        <a href="{% url 'room_add' school.id %}" class="btn btn-primary-custom btn-sm">+ Ajouter une salle</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
